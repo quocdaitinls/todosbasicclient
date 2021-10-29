@@ -1,5 +1,5 @@
-import React from "react";
-import {Route, Switch, Redirect} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Route, Switch, Redirect, useHistory} from "react-router-dom";
 import AuthPage from "./components/auth";
 import TaskPage from "./components/tasks";
 
@@ -8,7 +8,16 @@ import AuthProvider from "./context/authContext";
 import TaskProvider from "./context/taskContext";
 
 const App = () => {
-    const {user} = useAppCtx();
+    const history = useHistory();
+    const {user, getCurrentUser} = useAppCtx();
+
+    useEffect(() => {
+        getCurrentUser();
+    }, []);
+
+    useEffect(() => {
+        if (user) history.push("/task");
+    }, [user]);
 
     return (
         <Switch>

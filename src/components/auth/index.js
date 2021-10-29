@@ -1,31 +1,14 @@
-import React, {useEffect} from "react";
-import {
-    useRouteMatch,
-    Route,
-    Switch,
-    Redirect,
-    useHistory,
-} from "react-router-dom";
-import {useAppCtx} from "../../context/appContext";
+import React from "react";
+import {useRouteMatch, Route, Switch, Redirect} from "react-router-dom";
 import Form from "./Form";
 
 const AuthPage = () => {
-    const history = useHistory();
     const {path} = useRouteMatch();
-    const {user, getCurrentUser} = useAppCtx();
 
     const paths = {
         signinPath: `${path}/signin`,
         signupPath: `${path}/signup`,
     };
-
-    useEffect(() => {
-        getCurrentUser();
-    }, []);
-
-    useEffect(() => {
-        if (user) history.push("/task");
-    }, [user]);
 
     return (
         <Switch>
