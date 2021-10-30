@@ -72,7 +72,7 @@ const Task = (props) => {
     };
 
     useEffect(() => {
-        updateTask(mergeTask(data, {isDone: done}));
+        if (done !== data.isDone) updateTask(mergeTask(data, {isDone: done}));
     }, [done]);
 
     return (
