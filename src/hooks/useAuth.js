@@ -23,11 +23,8 @@ const useAuth = () => {
     };
 
     const signout = async () => {
-        // const res = await apiSignout();
-        // if (res.data) {
         setUser(null);
         setToken("");
-        // }
     };
 
     const getCurrentUser = async () => {
